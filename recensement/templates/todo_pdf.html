@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+          color: #4470C3;
+          font-weight: bold;
+          font-size: 30px;
+          padding: 0;
+          margin: 0;
+          text-align: center;
+        }
+        h2 {
+          font-size: 30px; /* Large font size for H1 */
+            color: red;      /* Red color for H1 */
+            margin-bottom: 10px;
+        }
+      h3{
+        font-size: 28px; /* Smaller font size for H2 */
+            color: blue;     /* Blue color for H2 */
+            margin-bottom: 5px;
+      }
+      h4{
+        text-align: center;
+        font-size: 18px;
+      }
+        ul {
+            padding-left: 20px; /* Indent the list of todos */
+        }
+        li {
+            margin: 0;
+            font-size: 15px;
+            font-weight: bold; /* Bold text for to-dos */
+            color: black;      /* Black color for to-dos */
+        }
+    </style>
+</head>
+<body>
+    <img src="https://lh6.googleusercontent.com/proxy/NCrzqK54n6FGimcxre43iXk8OE0I0pvnDh11wV3TJ5fj8Z7bNR6thehkAH7pnHnscmoagCDzx0fdit_BHES_fBGLdega-75K4DkLmWsPnOZnFV4F2Q" alt="Logo" style="width: 350px; height: auto; padding: 0;text-align: center;">
+
+    <h1>{{title}}<br> Mis à jour le {{update_time}} .</h1>
+    <h4> nombre de cours {{course_count}}</h4>
+    {% for module in structured_data %}
+        <h2>{{ module.title }}</h2>
+        {% for submodule in module.submodules %}
+            <h3>{{ submodule.title }}</h3>
+            <ul>
+                {% for todo in submodule.todos %}
+                    <li>{{ todo }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>
